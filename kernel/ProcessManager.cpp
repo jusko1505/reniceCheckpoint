@@ -99,6 +99,12 @@ Process * ProcessManager::get(const ProcessID id)
     return m_procs.get(id);
 }
 
+ProcessManager::Result ProcessManager::managerSetPriority(Process *proc, int newPriority){
+    m_scheduler->dequeue(proc, true);
+    proc->setPriority(newPriority);
+    m_scheduler->enqueue(proc, false);
+}
+
 
 
 void ProcessManager::remove(Process *proc, const uint exitStatus)
