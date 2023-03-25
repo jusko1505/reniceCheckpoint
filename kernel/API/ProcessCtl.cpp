@@ -70,6 +70,7 @@ API::Result ProcessCtlHandler(const ProcessID procID,
     case ModifyPriority:
         procs->managerSetPriority(proc, addr);
         procs->schedule();
+        break;
 
     case GetParent:
         return (API::Result) procs->current()->getParent();

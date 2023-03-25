@@ -33,12 +33,7 @@ Process::Process(ProcessID id, Address entry, bool privileged, int priority, con
     m_wakeups       = 0;
     m_entry         = entry;
     m_privileged    = privileged;
-    if(0 < m_priority && m_priority < 6){
-        m_priority = priority;
-    }
-    else{
-        m_priority = 3;
-    }
+    m_priority = 3;
     m_memoryContext = ZERO;
     m_kernelChannel = ZERO;
     MemoryBlock::set(&m_sleepTimer, 0, sizeof(m_sleepTimer));
