@@ -78,6 +78,12 @@ template <class T, Size N> class Queue : public Container
         uint idx = m_tail;
         m_tail = (m_tail + 1) % N;
         m_count--;
+        /*
+        T maxPriorityProcess = m_array[m_tail % N];
+        for(Size i = 0; i < m_count; i++){
+            if(m_array[(m_tail + i) % N] == item)
+        }
+        */
 
         return m_array[idx];
     }

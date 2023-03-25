@@ -68,6 +68,29 @@ Scheduler::Result Scheduler::dequeue(Process *proc, bool ignoreState)
 
 Process * Scheduler::select()
 {
+    int maxPriority = 0;
+    Size count = m_queue.count();
+
+    if (count > 0){
+        for (Size i = 0; i < count; i++){
+            Process *p = m_queue.pop();
+            if (p->getPriority() > maxPriority){
+                maxPriority = p->getPriority();
+                m_queue.push(p);
+            }
+        }
+
+        for (Size j = 0; j < count; j++){
+            Process *p = m_queue.pop();
+            if(p->getPriority() == maxPriority){
+                return p;
+            }
+            else{
+                m_queue.push(p);
+            }
+        }
+    }
+    /*
     if (m_queue.count() > 0)
     {
         Process *p = m_queue.pop();
@@ -75,6 +98,6 @@ Process * Scheduler::select()
 
         return p;
     }
-
+    */
     return (Process *) NULL;
 }
