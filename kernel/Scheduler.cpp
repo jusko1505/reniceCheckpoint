@@ -18,10 +18,11 @@
 #include <Log.h>
 #include "Kernel.h"
 #include "Scheduler.h"
+//#include <stdio.h>
 
 Scheduler::Scheduler()
 {
-    DEBUG("");
+    DEBUG("scheduler created");
 }
 
 Size Scheduler::count() const
@@ -68,10 +69,26 @@ Scheduler::Result Scheduler::dequeue(Process *proc, bool ignoreState)
 
 Process * Scheduler::select()
 {
+    Process *maxPriorityProcess;
     int maxPriority = 0;
     Size count = m_queue.count();
 
-    if (count > 0){
+    if(m_queue.count()>0){
+        for(Size i = 0; i < count; i++){
+            Process *p = m_queue.pop();
+            if(p->getPriority() > maxPriority){
+                maxPriority = p->getPriority();
+                maxPriorityProcess = p;
+            }
+            m_queue.push(p);
+        }
+        return maxPriorityProcess;
+    }
+
+    /*
+    int maxPriority = 0;
+    Size count = m_queue.count();
+    if (m_queue.count() > 0){
         for (Size i = 0; i < count; i++){
             Process *p = m_queue.pop();
             if (p->getPriority() > maxPriority){
@@ -79,10 +96,10 @@ Process * Scheduler::select()
                 m_queue.push(p);
             }
         }
-
         for (Size j = 0; j < count; j++){
             Process *p = m_queue.pop();
             if(p->getPriority() == maxPriority){
+                m_queue.push(p);
                 return p;
             }
             else{
@@ -90,6 +107,7 @@ Process * Scheduler::select()
             }
         }
     }
+    */
     /*
     if (m_queue.count() > 0)
     {
@@ -99,5 +117,6 @@ Process * Scheduler::select()
         return p;
     }
     */
+    
     return (Process *) NULL;
 }

@@ -103,6 +103,7 @@ ProcessManager::Result ProcessManager::managerSetPriority(Process *proc, int new
     m_scheduler->dequeue(proc, true);
     proc->setPriority(newPriority);
     m_scheduler->enqueue(proc, false);
+    return Success;
 }
 
 
@@ -166,7 +167,7 @@ ProcessManager::Result ProcessManager::schedule()
 {
     const Timer *timer = Kernel::instance()->getTimer();
     const Size sleepTimerCount = m_sleepTimerQueue.count();
-
+    DEBUG("before choosing a process from scheduler");
     // Let the scheduler select a new process
     Process *proc = m_scheduler->select();
 
