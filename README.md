@@ -1,7 +1,8 @@
-This repo contains an implementation of a Unix-like wait() command for FreeNOS:
+This repo contains a ps command that shows priority levels and a renice command
+for the below repository:
 https://github.com/nieklinnenbank/FreeNOS
 
 Justin Ko
 Kimtaiyo Mech
 
-https://www.youtube.com/watch?v=idxcysgFq7g
+https://www.youtube.com/watch?v=oGmWMePwHvY
