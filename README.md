@@ -3,6 +3,5 @@ for the below repository:
 https://github.com/nieklinnenbank/FreeNOS
 
 Justin Ko
-Kimtaiyo Mech
 
 https://www.youtube.com/watch?v=oGmWMePwHvY
